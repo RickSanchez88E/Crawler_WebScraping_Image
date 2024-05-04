@@ -19,7 +19,7 @@ def scraper(search_term, path):
         try:
             image_url = image["src"]
             response = requests.get(image_url)
-            with open(f"{path}/{i}.jpg", "wb") as f:
+            with open(f"{path}/{i}.png", "wb") as f:
                 f.write(response.content)
                 downloaded_images += 1
             if downloaded_images >= 1000:
@@ -29,7 +29,8 @@ def scraper(search_term, path):
 
 if __name__ == "__main__":
     # specify the search term and the directory path
-    search_term = input(" ")
-    path = "C:/Users/rick_/Downloads/data/Image DataSet"
+    search_term = input(" Enter the search term:  ")
+    path = f"{search_term}"
+    os.makedirs(path, exist_ok=True)
     # run the scraper
     scraper(search_term, path)
